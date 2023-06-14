@@ -7,5 +7,7 @@
   .logo {
     width: 103px;
     height: 24px;
+    align-self: flex-start;
+    margin-left: 30px;
   }
 }

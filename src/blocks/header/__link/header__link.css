@@ -13,6 +13,9 @@
 
 @media screen and (max-width: 690px) {
   .header__link {
+    align-self: flex-end;
+    transform: translateY(26px);
+    margin-right: 30px;
     font-size: 14px;
     line-height: 1.2;
   }
