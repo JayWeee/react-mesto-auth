@@ -67,7 +67,7 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleAddPlaceSubmit({ name, link }) {
+  function handleAddPlaceSubmit({ title: name, link }) {
     api
       .setNewCard({ name, link })
       .then((newCard) => {
@@ -112,14 +112,13 @@ function App() {
       .register({ password, email })
       .then(() => {
         setRegStatusInfo(true);
-        setIsInfoTooltipOpen(true);
         navigate('/sign-in', { replace: true });
       })
       .catch((err) => {
         setRegStatusInfo(false);
-        setIsInfoTooltipOpen(true);
         console.log(err);
-      });
+      })
+      .finally(() => setIsInfoTooltipOpen(true))
   }
 
   function handleLogin({ password, email }) {

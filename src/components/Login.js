@@ -1,25 +1,14 @@
-import React, { useState } from 'react';
+import { useForms } from '../hooks/useForms';
 import SignForm from './SignForm';
 
 function Login({ handleLogin }) {
-  const [formValue, setFormValue] = useState({
-    password: '',
-    email: '',
-  });
 
-  function handleChange(evt) {
-    const { name, value } = evt.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
-  }
+  const { values, handleChange, setValues } = useForms({});
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleLogin(formValue);
-    setFormValue({ password: '', email: '' });
+    handleLogin(values);
+    setValues({ password: '', email: '' });
   }
 
   return (
@@ -35,7 +24,7 @@ function Login({ handleLogin }) {
         name="email"
         placeholder="Email"
         required
-        value={formValue.email}
+        value={values.email}
         onChange={handleChange}
       />
       <input
@@ -44,7 +33,7 @@ function Login({ handleLogin }) {
         name="password"
         placeholder="Пароль"
         required
-        value={formValue.password}
+        value={values.password}
         onChange={handleChange}
       />
     </SignForm>
