@@ -3,12 +3,11 @@ import SignForm from './SignForm';
 
 function Login({ handleLogin }) {
 
-  const { values, handleChange, setValues } = useForms({});
+  const { values, handleChange } = useForms({});
 
   function handleSubmit(evt) {
     evt.preventDefault();
     handleLogin(values);
-    setValues({ password: '', email: '' });
   }
 
   return (

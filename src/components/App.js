@@ -75,7 +75,7 @@ function App() {
 
     request()
       .then(closeAllPopups)
-      .catch(console.err)
+      .catch(console.error)
       .finally(() => setIsLoading(false));
   }
 
@@ -123,7 +123,7 @@ function App() {
           state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   }
 
   function handleCardDelete(card) {
@@ -132,7 +132,7 @@ function App() {
       .then(() => {
         setCards((cards) => cards.filter((c) => c._id !== card._id));
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   }
 
   function handleRegister({ password, email }) {
