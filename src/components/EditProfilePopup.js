@@ -2,12 +2,14 @@ import { useEffect, useContext } from 'react';
 import { useForms } from '../hooks/useForms';
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { AppContext } from '../contexts/AppContext';
 
-function EditProfilePopup({ onUpdateUser, isOpen, onClose }) {
+function EditProfilePopup({ onUpdateUser, isOpen }) {
 
   const { values, handleChange, setValues } = useForms({});
 
   const currentUser = useContext(CurrentUserContext);
+  const { isLoading } = useContext(AppContext);
 
   useEffect(() => {
     setValues({
@@ -25,16 +27,15 @@ function EditProfilePopup({ onUpdateUser, isOpen, onClose }) {
   return (
     <PopupWithForm
       isOpen={isOpen}
-      onClose={onClose}
       onSubmit={handleSubmit}
       name="edit"
       title="Редактировать профиль"
-      buttonText="Сохранить"
+      buttonText={isLoading ? 'Сохранение...' : 'Сохранить'}
     >
       <input
         className="popup__input"
         name="name"
-        value={values.name}
+        value={values.name || ''}
         id="name-input"
         type="text"
         required
@@ -47,7 +48,7 @@ function EditProfilePopup({ onUpdateUser, isOpen, onClose }) {
       <input
         className="popup__input"
         name="about"
-        value={values.about}
+        value={values.about || ''}
         id="about-input"
         type="text"
         required

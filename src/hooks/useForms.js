@@ -10,8 +10,6 @@ export function useForms(inputValues = {}) {
       ...values,
       [name]: value,
     });
-
-    console.log(values)
   };
   return { values, handleChange, setValues };
 }

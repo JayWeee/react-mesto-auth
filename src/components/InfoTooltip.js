@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import success from '../images/success.svg';
 import failure from '../images/failure.svg';
+import { AppContext } from '../contexts/AppContext';
 
-function InfoTooltip({ isOpen, onClose, regStatusInfo }) {
+function InfoTooltip({ isOpen, regStatusInfo }) {
+
+  const { closeAllPopups } = useContext(AppContext);
+
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__container">
         <button
-          onClick={onClose}
+          onClick={closeAllPopups}
           className="popup__btn popup__btn_action_close"
           type="button"
         />

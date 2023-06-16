@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useForms } from '../hooks/useForms';
 import PopupWithForm from './PopupWithForm';
+import { AppContext } from '../contexts/AppContext';
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+function AddPlacePopup({ isOpen, onAddPlace }) {
 
   const { values, handleChange, setValues } = useForms({});
+
+  const { isLoading } = useContext(AppContext);
 
   // Очистка инпутов при открытии
   useEffect(() => {
@@ -23,18 +26,17 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   return (
     <PopupWithForm
       isOpen={isOpen}
-      onClose={onClose}
       onSubmit={handleSubmit}
       name="card"
       title="Новое место"
-      buttonText="Создать"
+      buttonText={isLoading ? 'Создание...' : 'Создать'}
     >
       <input
         className="popup__input"
         name="title"
         id="title-input"
         type="text"
-        value={values.title}
+        value={values.title || ''}
         onChange={handleChange}
         required
         placeholder="Название"
@@ -47,7 +49,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         name="link"
         id="link-input"
         type="url"
-        value={values.link}
+        value={values.link || ''}
         onChange={handleChange}
         required
         placeholder="Ссылка на картинку"
