@@ -37,4 +37,5 @@ npm run build
 ```Bash
 npm start
 ```
+Файлы API храняться по пути: src/utils/Api.js и src/utils/auth.js
 Сайт откроется в браузере автоматически. Если этого не произошло, в адресной строке введите http://localhost:3000
